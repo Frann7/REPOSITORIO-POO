@@ -1,39 +1,25 @@
-#include<iostream>
+#include <iostream>
+#include "VectorDinamico.cpp"
 
 using namespace std;
 
-template<class T>
-class vector {
-    private:
-        T* data;
-        size_t size;
-        size_t capacity;
-    public:
-        vector(){};
-        void add(T datos);
+int main(){
+    int tam=0;
+vector<int> vec;
 
-};
+for(int i=0; i<5; i++)
+        vec.add(i);
+    
+cout<<"Vector sin modificaciones\n";
+for(int i=0; i<5; i++)
+    cout<<"  "<<vec[i]<<"  ";
+    cout<<endl;
 
-template<class T>
-vector<T>::vector(){
-    this->size = 0;
-    this->capacity = 2; // Initial capacity
-    this->data = new T[this->capacity];
-}
+vec.removeOcu2(3);
 
+cout<<"Vector con modificaciones\n";
+for(int i=0; i<vec.getsize(); i++)
+    cout<<"  "<<vec[i]<<"  ";
 
-
-template<class T>
-void vector<T>::add(T datos) {
-    if (this->size == this->capacity) {
-        // Resize logic would go here
-    }
-
-    this->data[this->capacity++] = datos;
-}
-
-
-int main() {
-    cout << "Hello, World!" << endl;
     return 0;
 }
