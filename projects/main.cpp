@@ -4,14 +4,16 @@
 using namespace std;
 
 int main(){
-    int tam=0;
+    
 vector<int> vec;
 
 for(int i=0; i<5; i++)
         vec.add(i);
+
+vec.add(3);
     
 cout<<"Vector sin modificaciones\n";
-for(int i=0; i<5; i++)
+for(int i=0; i<vec.getsize(); i++)
     cout<<"  "<<vec[i]<<"  ";
     cout<<endl;
 

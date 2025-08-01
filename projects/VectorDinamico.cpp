@@ -67,7 +67,7 @@ bool vector<T>::removeinpos(size_t pos){
 template<class T>
 void vector<T>::removeOcu2(T datos){
     for(int i=0; i<this->size; i++)
-    while((this->data[i]==datos) && (i<this->size))
+    while(this->data[i]==datos)
         remove(i);
 }
 
