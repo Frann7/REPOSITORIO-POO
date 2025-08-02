@@ -4,7 +4,7 @@
 using namespace std;
 
 char* copystr(const char* str){
-    char* newstr= new char[strlen(str)+1];
+    char* newstr= new char[getlength(str)];
     strcpy(newstr,str);
     return newstr;
 }
