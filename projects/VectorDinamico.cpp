@@ -20,6 +20,7 @@ class vector {
         void removeOcu2(T datos);
         T& operator[](size_t pos);
         size_t getsize(){return this->size;}
+        size_t  getcapacity(){return this->capacity;}
 };
 
 template<class T>
