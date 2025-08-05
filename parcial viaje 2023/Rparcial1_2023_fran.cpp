@@ -1,7 +1,10 @@
 #include <iostream>
 #include <string.h>
-#include "VectorDinamico.cpp"
+// archivo vectores dinamicos
+// #include "VectorDinamico.cpp"
 
+
+//Clase Abstracta
 class viaje{
 public:
    viaje(char* tipo){this->tipo=this->copystr(tipo);};   
@@ -73,7 +76,7 @@ void viaje_mixto::addviaje(viaje* newviaje){
 }
 
 double viaje_mixto::getmonto(){   
-   for (int i=0; i<vecviajes_mixtos->getcapacity(); i++)
+   for (size_t i=0; i<vecviajes_mixtos.capacity(); i++)
    double monto_+= vecviaje_mixtos[i]->getmonto();
    return monto_;
 }
@@ -84,7 +87,7 @@ public:
    void addviaje(viaje* newviaje);
    void mostrardatos();
 private:
-   vector<viaje*> datos;
+   vector<viaje*> datos[100];
 }
 
 void gestora::addviaje(viaje* newviaje){
@@ -92,6 +95,6 @@ void gestora::addviaje(viaje* newviaje){
 }
 
 void mostrardatos(){
-   for(int i=0; i<datos->getcapacity(); i++)
+   for(int i=0; i<100; i++)
       std::cout<<*datos[i]<<std::endl;
 }
