@@ -13,7 +13,6 @@ char* append(char* & first, const char* second){
     char* suma= new char[strlen(first)+strlen(second)+1];
     strcpy(suma, first);
     strcat(suma, second);
-    delete[] first;
     first=suma;
     return first;
 }

@@ -11,9 +11,11 @@ class vector {
     public:
         vector();
         T get_in_pos(size_t pos){return this->data[pos];};
-        void add(T datos);
-        void remove(size_t pos);
-        void removeOcu2(T datos);
+        void add(T datos);// agregar elemento;
+        void remove(size_t pos);// remover un dato pasando la pos
+        void removeOcu2(T datos);// remover ocurrencia de un dato
+        void removeData(T datos);// remover un dato pasando el dato mismo
+        bool existe(T datos);// saber si un elemento existe en el vector
         T& operator[](size_t pos);
         size_t getsize(){return this->size;}
 };
@@ -47,22 +49,35 @@ void vector<T>::resize(size_t newcapacity){
 template<class T>
 void vector<T>::remove(size_t pos){
     for(int i=pos; i<this->size; i++)
-        this->data[i]=this->data[i+1];
+        this->data[i]=this->data[i+1];// mueve todos los elementos hacia la izquierda
 
     this->size--;
 }
 
-
-
 template<class T>
 void vector<T>::removeOcu2(T datos){
     for(int i=0; i<this->size; i++)
-    while(this->data[i]==datos)
+    while(this->data[i]==datos)//remueve todos los T datos del vector
         remove(i);
 }
 
 template<class T>
-T& vector<T>::operator[](size_t pos){
+void vector<T>::removeData(T datos){
+    for(int i=0; i<this->size; i++)
+        if(this->data[i]==datos)//remueve solo el primer T dato que encuentre en el vector
+          remove(i); 
+}
+
+template <class T>
+bool vector<T>::existe(T datos){
+    for (int i=0; i<this->size; i++)    
+        if(this->data[i]==datos)
+        return true;
+    return false;
+}
+
+template<class T>
+T& vector<T>::operator[](size_t pos){// es lo mismo que un getter
 
     return this->data[pos];
 }
