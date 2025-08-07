@@ -1,0 +1,36 @@
+UADER software alumnado
+La UADER lo contrata para realizar un software que permita saber si un alumno aprobó un curso determinado.
+ El curso cuenta con un número de exámenes y recuperatorios los cuales son cargados por pantalla al iniciar el software.
+ 
+A la vez el software debe permitir cargar los datos de los alumnos (dni, nombre y apellido), y las notas de sus exámenes 
+tanto parciales como recuperatorios. Los exámenes recuperatorios pisan la nota de un examen parcial.
+ Por ejemplo, si un alumno rinde 2 exámenes con 60 y 50 y recupera el último con 70. Sus notas serán 60 y 70.
+
+Los alumnos tienen un estado al finalizar el curso, libre ausente no tiene la cantidad de exámenes requeridos, libre si
+ su promedio es menor a 55 o algún examen es menor a 50, regular si su promedio es mayor a 55 y menor a 75.
+  promocionado si su promedio es mayor a 75 y ningún examen es menor a 70.
+
+Los cursos pueden tener un máximo de 50 alumnos.
+1. (20) Realice funciones que le permitan agregar, remover y reemplazar notas a un alumno determinado.
+Utilizando vector dinámico.?
+ 
+2. (30) Realice el diseño que permita saber el estado de los alumnos.
+
+3. (20) Realice una función que imprima por pantalla los datos del alumno con el siguiente formato:
+ “Nombre ………. Estado”. Sobreescriba el operador << para imprimirlo.
+4 (15). Defina los siguientes conceptos fundamentales de la programación orientada a objetos (sea breve) Clase, Herencia, Objeto, Mensaje, composición.
+
+5 (15). Indique cual es la salida del siguiente algoritmo para los valores : x(17,0) , x(857,0) , x(1234,0)
+
+
+int x(int n, int t)
+
+{
+
+if (n == 0) return t;
+
+t = (t * 10) + (n % 10);
+
+return x(n / 10, t);
+
+}

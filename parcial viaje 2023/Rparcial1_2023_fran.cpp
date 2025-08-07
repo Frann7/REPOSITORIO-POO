@@ -3,7 +3,6 @@
 // archivo vectores dinamicos
 #include "VectorDinamico.cpp"
 
-
 //Clase Abstracta
 class viaje{
 public:
