@@ -1,26 +1,24 @@
 #include <iostream>
 #include "VectorDinamico.cpp"
-#include <string.h>
+#include <string.h>// para strcpy()
 
 class alumno{
 public:
-alumno(const char* nya, int dni);
-    void add_nota(int nota);
-    void reemplazar_nota(int nota_vieja, int nota_nueva);
-    char* getestado();
-    int getdni(){return this->dni;};
-    int getnota(int pos){return this->notas[pos];};
-    char* getnya(){return this->nya;};
-    friend std::ostream& operator <<(std::ostream& os, alumno& p);
+    alumno(const char* nya, int dni);// constructor
+    void add_nota(int nota);// agregar nota al vec
+    void reemplazar_nota(int nota_vieja, int nota_nueva);// nota del recuperatorio pisa la nota del parcial
+    char* getestado();// consigna 2 permite saber el estado de los alumnos
+    int getdni(){return this->dni;};// para mostrar datos
+    int getnota(int pos){return this->notas[pos];};// getnota(0) contiene una nota, getnota(1) contiene la otra
+    char* getnya(){return this->nya;};// para mostrar datos
+    friend std::ostream& operator <<(std::ostream& os, alumno& p);// sobrecarga de operador << para mostrar datos
 private:
     char* estado;
     char* nya;
     int dni;
-    //int nota_parcial;
-    int nota_recupertario;
-    vector<int> notas; 
-    char* copystr(const char* str);
-    double getpromedio();
+    vector<int> notas;// vector dinamico que guarda la nota de los dos parciales 
+    char* copystr(const char* str);// metodo para cstring
+    double getpromedio();// metodo que calcula el promedio, esta en private porque no se necesita llamar desde afuera de la clase
 };
 
 alumno::alumno(const char* nya, int dni){
@@ -49,7 +47,7 @@ double alumno::getpromedio(){
 }
 
 char* alumno::getestado(){
-    
+    //Segun el promedio y cuanta nota obtuvo en cada parcial tiene una condicion
     if(this->notas.getsize()<2){
         this->estado=copystr("Libre Ausente");
     }else if((this->getpromedio()<55) || (this->notas[0]<50) || (this->notas[1]<50)){
@@ -67,14 +65,14 @@ std::ostream& operator <<(std::ostream& os, alumno& p){
     os << "Nombre y Apellido: " << p.getnya() << std::endl;
     os << "Dni: " << p.getdni() << std::endl;
     os << "Notas: ";
-    if (p.notas.getsize() >= 1) os << p.getnota(0);
+    if (p.notas.getsize() >= 1) os << p.getnota(0);// estos if son para que si el estado es libre ausente no muestre basura
     if (p.notas.getsize() >= 2) os << " " << p.getnota(1);
     os << std::endl;
     os << "Estado: " << p.getestado() << std::endl;
     return os;
 }
 
-class Curso{
+class Curso{// actua como una clase gestora
 public:
     Curso(){};
     void add_alumno(alumno* newalumno);
@@ -85,6 +83,9 @@ private:
 
 void Curso::add_alumno(alumno* newalumno){
     alumnos.add(newalumno);
+
+    if(alumnos.getsize()==50)// un curso puede tener un maximo de 50 alumnos
+        return;
 }
 
 void Curso::mostrarDatos(){
