@@ -82,10 +82,8 @@ private:
 };
 
 void Curso::add_alumno(alumno* newalumno){
+    if(alumnos.getsize()<50)// un curso puede tener un maximo de 50 alumnos
     alumnos.add(newalumno);
-
-    if(alumnos.getsize()==50)// un curso puede tener un maximo de 50 alumnos
-        return;
 }
 
 void Curso::mostrarDatos(){

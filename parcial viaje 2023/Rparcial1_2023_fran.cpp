@@ -93,13 +93,11 @@ private:
 };
 
 void gestora::addviaje(viaje* newviaje){
+   if(datos.getsize()<100)// la empresa no va a contar con mas de 100 viajes
    datos.add(newviaje);// usar datos.add, no usar datos->add ya que la -> se usa para implementar metodos de los objetos que estan dentro del vector, no del vector mismo
     /*ejemplo pensar como si fuera una caja (vector) con direcciones (punteros) adentro: 
       caja.agregar_direccion() → Le decis a la caja que agregue una dirección
       caja[0]->tocar_timbre() → Vas a la dirección que está en la posición 0 de la caja y tocas el timbre*/
-
-   if(datos.getsize()==100)// la empresa no va a contar con mas de 100 viajes
-   return;
 }
 
 void gestora::mostrardatos(){
