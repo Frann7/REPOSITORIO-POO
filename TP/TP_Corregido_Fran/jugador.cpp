@@ -59,8 +59,23 @@ void Jugador::avanzar(int pasos)
 
 void Jugador::perderTurno(int turnos)
 {
-    turnosPerdidos += turnos;
-    if (turnosPerdidos < 0) turnosPerdidos = 0;
+    if (turnos == 0) {
+        turnosPerdidos = 0; // Resetear turnos perdidos
+    } else if (turnos > 0) {
+        turnosPerdidos = turnos; // Asignar directamente, no sumar
+    }
+}
+
+void Jugador::establecerTurnosPerdidos(int turnos)
+{
+    turnosPerdidos = turnos; // Asignación directa y segura
+}
+
+void Jugador::reducirTurnosPerdidos()
+{
+    if (turnosPerdidos > 0 && turnosPerdidos != 99) { // 99 es para el pozo
+        turnosPerdidos--;
+    }
 }
 
 void Jugador::reiniciar()
@@ -74,6 +89,11 @@ void Jugador::setPosicion(int nuevaPosicion)
     posicion = nuevaPosicion;
     if (posicion < 1) posicion = 1;
     if (posicion > 63) posicion = 63;
+}
+
+void Jugador::resetContadorJugadores()
+{
+    contadorJugadores = 0;
 }
 
 void Jugador::asignarColorEIcono()

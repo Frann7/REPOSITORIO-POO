@@ -44,6 +44,8 @@ void Juego::iniciar(int numJugadores)
     }
 
     turnoActual = 0;
+    // Resetear contador de jugadores para colores
+    Jugador::resetContadorJugadores();
 
     emit mensajeActualizado("¡Juego iniciado!");
     emit mensajeActualizado(QString("Turno de %1").arg(jugadores[turnoActual]->getNombre()));
@@ -59,7 +61,7 @@ void Juego::jugarTurno()
 
     // Verificar si el jugador tiene turnos perdidos
     if (jugadorActual->getTurnosPerdidos() > 0) {
-        jugadorActual->perderTurno(-1); // Reducir turnos perdidos
+        jugadorActual->reducirTurnosPerdidos(); // Nuevo método para reducir correctamente
         emit mensajeActualizado(QString("%1 pierde el turno (turnos restantes: %2)")
                                     .arg(jugadorActual->getNombre())
                                     .arg(jugadorActual->getTurnosPerdidos()));
@@ -67,6 +69,7 @@ void Juego::jugarTurno()
         // Pasar al siguiente jugador
         turnoActual = (turnoActual + 1) % jugadores.size();
         emit mensajeActualizado(QString("Turno de %1").arg(jugadores[turnoActual]->getNombre()));
+        emit tableroActualizado();
         return;
     }
 
@@ -133,7 +136,7 @@ void Juego::moverJugador(Jugador *jugador, int pasos)
                                 .arg(posicionAnterior)
                                 .arg(jugador->getPosicion()));
 
-    // Aplicar efecto de la casilla
+    // Aplicar efecto de la casilla SOLO UNA VEZ
     Casilla* casilla = tablero->obtenerCasilla(jugador->getPosicion());
     if (casilla) {
         QString tipoCasilla = casilla->getTipo();
@@ -145,6 +148,9 @@ void Juego::moverJugador(Jugador *jugador, int pasos)
         }
 
         int posicionAntesEfecto = jugador->getPosicion();
+        int turnosAntesEfecto = jugador->getTurnosPerdidos();
+
+        // Aplicar efecto UNA SOLA VEZ
         casilla->aplicarEfecto(jugador);
 
         // Verificar si la posición cambió después del efecto
@@ -154,11 +160,20 @@ void Juego::moverJugador(Jugador *jugador, int pasos)
                                         .arg(jugador->getPosicion()));
         }
 
-        // Verificar turnos perdidos
-        if (jugador->getTurnosPerdidos() > 0) {
-            emit mensajeActualizado(QString("%1 perderá %2 turno(s)")
-                                        .arg(jugador->getNombre())
-                                        .arg(jugador->getTurnosPerdidos()));
+        // Verificar turnos perdidos SOLO si cambió
+        if (jugador->getTurnosPerdidos() != turnosAntesEfecto) {
+            QString mensaje;
+            if (jugador->getTurnosPerdidos() == 99) {
+                mensaje = QString("%1 cayó en el pozo y esperará hasta que otro jugador también caiga")
+                              .arg(jugador->getNombre());
+            } else if (jugador->getTurnosPerdidos() > 0) {
+                mensaje = QString("%1 perderá %2 turno(s)")
+                              .arg(jugador->getNombre())
+                              .arg(jugador->getTurnosPerdidos());
+            }
+            if (!mensaje.isEmpty()) {
+                emit mensajeActualizado(mensaje);
+            }
         }
     }
 }

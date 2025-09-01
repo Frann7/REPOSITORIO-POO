@@ -1,5 +1,9 @@
 #include "casilla.h"
 #include "jugador.h"
+#include <QDebug>
+
+// Variable estática para rastrear jugadores en el pozo
+static QVector<Jugador*> jugadoresEnPozo;
 
 // Casilla base
 Casilla::Casilla(int numero) : numero(numero) {}
@@ -27,8 +31,8 @@ QString CasillaOca::getTipo() const {
 }
 
 void CasillaOca::aplicarEfecto(Jugador *jugador) {
-    if(destino > 0 && destino <= 63) {
-        jugador->avanzar(destino - jugador->getPosicion());
+    if(destino > 0 && destino <= 63 && jugador->getPosicion() != destino) {
+        jugador->setPosicion(destino);
     }
 }
 
@@ -40,7 +44,9 @@ QString CasillaPuente::getTipo() const {
 }
 
 void CasillaPuente::aplicarEfecto(Jugador *jugador) {
-    jugador->avanzar(destino - jugador->getPosicion());
+    if(destino > 0 && destino <= 63 && jugador->getPosicion() != destino) {
+        jugador->setPosicion(destino);
+    }
 }
 
 // Casilla Posada
@@ -51,7 +57,10 @@ QString CasillaPosada::getTipo() const {
 }
 
 void CasillaPosada::aplicarEfecto(Jugador *jugador) {
-    jugador->perderTurno(1);
+    // Solo aplicar si no tiene ya turnos perdidos para evitar acumulación
+    if (jugador->getTurnosPerdidos() == 0) {
+        jugador->establecerTurnosPerdidos(1);
+    }
 }
 
 // Casilla Pozo
@@ -62,7 +71,25 @@ QString CasillaPozo::getTipo() const {
 }
 
 void CasillaPozo::aplicarEfecto(Jugador *jugador) {
-    jugador->perderTurno(99);
+    // Solo aplicar si no está ya en el pozo
+    if (jugador->getTurnosPerdidos() != 99) {
+        // Verificar si ya hay jugadores en el pozo y liberarlos
+        for (int i = jugadoresEnPozo.size() - 1; i >= 0; i--) {
+            Jugador* j = jugadoresEnPozo[i];
+            if (j != jugador && j->getTurnosPerdidos() == 99) {
+                j->establecerTurnosPerdidos(0); // Liberar jugador del pozo
+                jugadoresEnPozo.removeAt(i);
+                qDebug() << j->getNombre() << "liberado del pozo";
+            }
+        }
+
+        // El jugador actual cae en el pozo
+        jugador->establecerTurnosPerdidos(99);
+        if (!jugadoresEnPozo.contains(jugador)) {
+            jugadoresEnPozo.append(jugador);
+        }
+        qDebug() << jugador->getNombre() << "cae en el pozo";
+    }
 }
 
 // Casilla Laberinto
@@ -73,7 +100,9 @@ QString CasillaLaberinto::getTipo() const {
 }
 
 void CasillaLaberinto::aplicarEfecto(Jugador *jugador) {
-    jugador->avanzar(destino - jugador->getPosicion());
+    if(destino > 0 && destino <= 63 && jugador->getPosicion() != destino) {
+        jugador->setPosicion(destino);
+    }
 }
 
 // Casilla Carcel
@@ -84,7 +113,10 @@ QString CasillaCarcel::getTipo() const {
 }
 
 void CasillaCarcel::aplicarEfecto(Jugador *jugador) {
-    jugador->perderTurno(2);
+    // Solo aplicar si no tiene ya turnos perdidos para evitar acumulación
+    if (jugador->getTurnosPerdidos() == 0) {
+        jugador->establecerTurnosPerdidos(2);
+    }
 }
 
 // Casilla Calavera
@@ -95,5 +127,7 @@ QString CasillaCalavera::getTipo() const {
 }
 
 void CasillaCalavera::aplicarEfecto(Jugador *jugador) {
-    jugador->avanzar(1 - jugador->getPosicion());
+    if (jugador->getPosicion() != 1) {
+        jugador->setPosicion(1);
+    }
 }

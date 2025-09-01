@@ -20,8 +20,13 @@ public:
     // Métodos de juego
     void avanzar(int pasos);
     void perderTurno(int turnos);
+    void establecerTurnosPerdidos(int turnos); // Método más seguro
+    void reducirTurnosPerdidos(); // Nuevo método
     void reiniciar();
     void setPosicion(int nuevaPosicion);
+
+    // Método estático para resetear contador
+    static void resetContadorJugadores();
 
 private:
     QString nombre;
