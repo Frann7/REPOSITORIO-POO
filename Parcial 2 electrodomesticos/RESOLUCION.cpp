@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <string>
 #include <vector> // Vector STL
 #include <algorithm> // Para usar funcionalidades como Sort
 #include <fstream> // Archivos
@@ -178,9 +179,12 @@ public:
     void leer();
     void PreciosActualizados();
     void listado();
-    void itemD();
+    void prodXmarca();
+    void masCaro();
+    void masBarato();
     double getValorUSD() const;
     void setValorUSD(double valor);
+    void generarEjemploArchivo(); // Metodo para generar un archivo de ejemplo
 private:
     std::vector<producto*> vecProd;
     double valorUSD;
@@ -258,4 +262,88 @@ void Empresa::leer()
     archivo.close();
  }
 
- // FALTA CONSIGNA B Y C
+// Generar archivo txt con datos ordenados
+void Empresa::listado()
+{
+    std::ofstream archivo("listado.dat");
+    if(archivo.fail()) return;
+
+    sort(this->vecProd.begin(), this->vecProd.end(), [](producto* a, producto* b){ return a->getnombre() > b->getnombre(); });
+
+    for (producto* p : this->vecProd)
+    {
+        archivo << "Nombre: " << p->getnombre() << " Marca: " << p->getmarca() << ".........$ Precio: " << p->getprecio();
+        archivo << std::endl;  
+    }
+}
+
+void Empresa::prodXmarca()
+{
+    std::map <std::string, int> productos_marca;
+    std::string marca;
+   for (producto* prod : this->vecProd)
+    {
+    marca = prod->getmarca();
+    productos_marca[marca] += 1;
+    }
+    for (auto it = productos_marca.begin(); it != productos_marca.end(); ++it)
+    {
+        std::cout << " Marca: " << it->first << " Cantidad: " << it->second;
+        std::cout << std::endl;
+    }
+}
+
+void Empresa::masBarato()
+{
+    auto it_barato = std::min_element(this->vecProd.begin(), this->vecProd.end(),[](producto* a, producto* b)
+                                                                { return a->getprecio() < b->getprecio(); });
+    producto* prod_masBarato = *it_barato; // el resultado es un iterator
+
+    std::cout << "El producto mas barato es: " << prod_masBarato->getnombre();
+    std::cout << std::endl;
+}
+
+void Empresa::masCaro()
+{
+    auto it_caro = std::max_element(this->vecProd.begin(), this->vecProd.end(),[](producto* a, producto* b)
+                                                              { return a->getprecio() < b->getprecio(); });
+    producto* prod_masCaro = *it_caro;
+
+    std::cout << "El producto mas caro es: " << prod_masCaro->getnombre();
+    std::cout << std::endl; 
+}
+
+// Metodo para generar un archivo de ejemplo
+void Empresa::generarEjemploArchivo()
+{
+    std::ofstream archivo("productos.dat", std::ios::binary);
+    if (archivo.fail())
+    {
+        std::cout<<" ERROR al crear el archivo\n";
+    }else
+    {
+        struct_producto struProd;
+
+        struProd.cod = 1;
+        strcpy(struProd.nombre, "Heladera");
+        strcpy(struProd.marca, "LG");
+        struProd.tipo = 'N';
+        struProd.precio = 50000.0;
+        archivo.write((char*)&struProd,sizeof(struProd));
+
+        struProd.cod = 2;
+        strcpy(struProd.nombre, "Cortadora de cesped");
+        strcpy(struProd.marca, "Honda");
+        struProd.tipo = 'J';
+        struProd.precio = 15000.0;
+        archivo.write((char*)&struProd,sizeof(struProd));
+
+        struProd.cod = 3;
+        strcpy(struProd.nombre, "Microondas");
+        strcpy(struProd.marca, "Samsung");
+        struProd.tipo = 'I';
+        struProd.precio = 20000.0;
+        archivo.write((char*)&struProd,sizeof(struProd));
+    }
+    archivo.close();
+}
