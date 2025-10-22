@@ -24,7 +24,7 @@ int main()
     cout << "5) Imprimiendo cantidad de productos por marca:\n";
     emp.prodXmarca();
 
-    cout << "6) Mostrando producto más caro y más barato:\n";
+    cout << "6) Mostrando producto mas caro y mas barato:\n";
     emp.masCaro();
     emp.masBarato();
 

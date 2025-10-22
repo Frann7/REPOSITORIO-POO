@@ -250,7 +250,7 @@ void Empresa::leer()
 
             prod->actualizar_precio();// Polimorfismo
 
-            struProd.cod = prod->getcod();
+            struProd.cod = prod->getcod();           
             strcpy(struProd.nombre, prod->getnombre());
             strcpy(struProd.marca, prod->getmarca());
             struProd.tipo = prod->getTipo();// Polimorfismo
@@ -268,7 +268,8 @@ void Empresa::listado()
     std::ofstream archivo("listado.dat");
     if(archivo.fail()) return;
 
-    sort(this->vecProd.begin(), this->vecProd.end(), [](producto* a, producto* b){ return a->getnombre() > b->getnombre(); });
+    sort(this->vecProd.begin(), this->vecProd.end(), [](producto* a, producto* b)
+                            { return strcmp(a->getnombre(),b->getnombre()) < 0; });
 
     for (producto* p : this->vecProd)
     {
