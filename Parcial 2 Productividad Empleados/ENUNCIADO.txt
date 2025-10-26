@@ -1,0 +1,29 @@
+Programación Orientada a objetos - Parcial 2
+Apellido y Nombre: ______________________________________________
+Cantidad de Hojas: _______________ Fecha: 5 de Noviembre de 2018
+Una empresa desea controlar la productividad de sus empleados, dicha empresa tiene un
+archivo binario con los siguientes datos de sus empleados :
+dni : char[8]
+nombre: char[200]
+apellido: char[200]
+A la vez la empresa tiene un archivo binario donde se encuentran las horas trabajadas de
+cada uno de los empleados. Este archivo tiene el siguiente formato:
+dni: char[8]
+horas: int
+fecha: char[8] //formato aaaammdd
+1. (25) Realice el diseño y programe las clases que permitan saber cuantas horas trabajo un
+empleado.
+2. (18) Realice una función que escriba en un archivo de texto el nombre y apellido del
+empleado y las horas trabajadas. Con el siguiente formato:
+Nombre Apellido : hs
+3. (20) Obtenga el o los empleados que más horas trabajaron y el o los que menos horas
+trabajaron. Puede usar STL
+4. (25) Realice una estructura tempate que represente una cola con prioridad (los elementos
+con mayor prioridad mayor van al principio) dicha estructura debe permitir agregar (cuando
+se agrega un elemento se indica la prioridad por medio de un entero) y consultar el primer
+elemento. Recuerde que consultar un elemento quita a dicho elemento de la cola. No
+puede usar STL
+5. (12) ¿Cuando utilizaría archivo de binarios y cuando no y por qué? ¿Que ventajas provee
+el iterator de stl?
+
+

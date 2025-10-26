@@ -319,16 +319,18 @@ void Curso::menoresNotas()
     if(!regulares.empty()){
         
         // 2. Crea un vector con la CANTIDAD de notas de cada regular
-        vector<size_t> vecCantNotas; 
+       /*vector<size_t> vecCantNotas; 
+       
         transform(regulares.begin(), regulares.end(), back_inserter(vecCantNotas),
-            [](Alumno* a) { return a->getCantNotas(); });
+            [](Alumno* a) { return a->getCantNotas(); });*/
 
         // 3. Suma esas cantidades
-        size_t sumaCantNotas = accumulate(vecCantNotas.begin(), vecCantNotas.end(), 0);
+        size_t sumaCantNotas = accumulate(regulares.begin(), regulares.end(), 0,
+        [](size_t notas, Alumno* a){ return notas + a->getCantNotas(); });
         
         // 4. Calcula el promedio de cantidad de notas
         // ** BUG FIX: Usamos static_cast para asegurar división con decimales **
-        double promedioCantNotas = static_cast<double>(sumaCantNotas) / vecCantNotas.size();
+        double promedioCantNotas = static_cast<double>(sumaCantNotas) / regulares.size();
 
         cout << "El promedio de cantidad de notas para Regulares es: " << promedioCantNotas << endl;
 
