@@ -1,0 +1,25 @@
+Netflix te ha contratado para diseñar y programar un sistema de votación de sus series y películas.
+En esta plataforma, los usuarios pueden votar las series y películas que han visto, asignándoles una
+calificación del 0 al 5. Dicha empresa tiene los datos de sus series y películas en un archivo binario
+con el siguiente formato:
+int nro
+char[200] nombre
+char tipo // s : serie, p : película.
+Y los datos de las votaciones se encuentran en otro archivo binario con el siguiente formato:
+int nro
+int votación
+Donde nro es el identificador de la pelicula o serie. Además la valoración de una película o serie
+está dada por el promedio de sus votaciones.
+1. (30) Realice el diseño que lea los archivos y permita mostrar el nombre de las películas o series y
+su valoración.
+2. (25) Escriba un archivo de texto que permita saber el nombre de las películas o series y su
+valoración con el siguiente formato: “Nombre ………. valoración”.
+3. (30) Realice funciones usando stl :
+• (10) Que obtenga las 5 películas o series con mayor valoración.
+• (10) Que obtenga el o las películas o series más votadas.
+• (10) Que obtenga la cantidad de votos de las series y la cantidad de votos de las películas
+(utilice map)
+4. (15) Conteste: ¿en qué casos utilizaría archivo binario y en qué casos archivo de texto? ¿Y por
+qué?
+
+

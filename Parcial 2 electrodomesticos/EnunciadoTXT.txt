@@ -1,0 +1,28 @@
+Programación Orientada a objetos
+1. Un comercio de electrodomésticos necesita un sistema que le permita actualizar sus precios, los
+electrodomésticos nacionales suben un 2% mensual, los importados dependen del porcentaje de
+suba del dólar (el cual es un dato que se ingresa al momento de actualizar los precios) y los
+productos de jardín suben un 10% anual. El sistema cuenta con un archivo donde se guardan los
+electrodomésticos y productos de jardín, el cual tiene la siguiente estructura:
+
+código de producto : int
+Nombre : char[50]
+marca : char[20]
+tipo: char //N (nacional), I (importado), J (jardín)
+Precio: double
+
+a. Realice un diseño orientado a objetos que permita resolver el problema y programe dichas
+clases. A la vez programe el método que incremente los precios (de forma mensual) de todos
+los productos. Y Conteste. ¿Se puede utilizar polimorfismo? Justifique.
+b.Lea el archivo binario, actualice todos los precios y genere otro archivo con los precios
+actualizados.
+c.Lea el archivo binario y genere un listado de precios el cual debe estar ordenado por
+nombre del producto (utilice stl) y luego genere un archivo de texto a partir de este listado
+con el siguiente formato: nombre, marca …………$ precio.
+d.Es necesario saber cuántos productos hay por marca y cual producto es el más caro y el
+más barato, utilice stl.
+2. Defina los siguientes conceptos: (sea breve)
+STL, polimorfismo, programación genérica. ¿Cuándo usaría polimorfismo? y ¿cuando programación
+genérica? Ejemplifique.
+
+

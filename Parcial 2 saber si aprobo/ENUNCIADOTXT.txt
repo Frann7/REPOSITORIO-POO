@@ -1,0 +1,39 @@
+La UADER lo contrata para realizar un sistema que permita saber si un alumno aprobó o no un
+curso. Para lo cual, cuenta con dos archivos binarios donde se encuentra la información.
+
+Alumnos.dat
+legajo : int
+Nombre : char[300]
+tipo : char //R regular o L libre
+
+Notas.dat
+legajo : int
+Nota : int
+
+Los Alumnos del curso pueden ser regulares, que aprueban con promedio 60 o mayor y ninguna
+nota menor a 55 o pueden ser libres que se les toma un solo examen que tiene que tener nota
+mayor a 70.
+1. (30) Realice el diseño y programe las clases que permitan saber qué alumnos aprobaron el
+curso.
+2. (20) Escriba un archivo de texto que permita saber los alumnos que aprobaron y desaprobaron
+con el siguiente formato: “Nombre ………. Aprobó o no aprobó”.
+3. (35) Realice funciones usando stl :
+•
+
+(10) Que obtenga el o los alumnos con mayor promedio
+
+•
+
+(10) Que obtenga el promedio total discriminados por si aprobó o no.
+
+•
+
+(15) Que obtenga los alumnos regulares que tienen menos cantidad de notas que la
+
+mayoría.
+4. (15) Conteste :
+1. ¿Cuándo utilizaría archivo de texto y archivo binario?
+2. ¿Por qué se utilizan estructuras template en los lenguajes de tipado estático? ¿Cual es la
+ventaja?
+
+
