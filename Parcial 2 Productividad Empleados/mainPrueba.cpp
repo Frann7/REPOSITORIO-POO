@@ -48,28 +48,40 @@ void generarArchivosDePrueba()
     struHorasT hora;
 
     // Horas para Juan (111) -> Total: 18 hs (El minimo)
-    strcpy(hora.dni, "111"); hora.horasT = 10; strcpy(hora.fecha, "20251020");
+    strcpy(hora.dni, "111"); hora.horasT = 10; 
+    // BORRAR ESTA LÍNEA -> strcpy(hora.fecha, "20251020");
     arch2.write((char*)&hora, sizeof(struHorasT));
-    strcpy(hora.dni, "111"); hora.horasT = 8; strcpy(hora.fecha, "20251021");
+    
+    strcpy(hora.dni, "111"); hora.horasT = 8; 
+    // BORRAR ESTA LÍNEA -> strcpy(hora.fecha, "20251021");
     arch2.write((char*)&hora, sizeof(struHorasT));
 
     // Horas para Ana (222) -> Total: 120 hs (El maximo)
-    strcpy(hora.dni, "222"); hora.horasT = 40; strcpy(hora.fecha, "20251020");
+    strcpy(hora.dni, "222"); hora.horasT = 40; 
+    // BORRAR ESTA LÍNEA -> strcpy(hora.fecha, "20251020");
     arch2.write((char*)&hora, sizeof(struHorasT));
-    strcpy(hora.dni, "222"); hora.horasT = 40; strcpy(hora.fecha, "20251021");
+    
+    strcpy(hora.dni, "222"); hora.horasT = 40; 
+    // BORRAR ESTA LÍNEA -> strcpy(hora.fecha, "20251021");
     arch2.write((char*)&hora, sizeof(struHorasT));
-    strcpy(hora.dni, "222"); hora.horasT = 40; strcpy(hora.fecha, "20251022");
+    
+    strcpy(hora.dni, "222"); hora.horasT = 40; 
+    // BORRAR ESTA LÍNEA -> strcpy(hora.fecha, "20251022");
     arch2.write((char*)&hora, sizeof(struHorasT));
 
     // Horas para Luis (333) -> Total: 45 hs
-    strcpy(hora.dni, "333"); hora.horasT = 20; strcpy(hora.fecha, "20251020");
+    strcpy(hora.dni, "333"); hora.horasT = 20; 
+    // BORRAR ESTA LÍNEA -> strcpy(hora.fecha, "20251020");
     arch2.write((char*)&hora, sizeof(struHorasT));
-    strcpy(hora.dni, "333"); hora.horasT = 25; strcpy(hora.fecha, "20251021");
+    
+    strcpy(hora.dni, "333"); hora.horasT = 25; 
+    // BORRAR ESTA LÍNEA -> strcpy(hora.fecha, "20251021");
     arch2.write((char*)&hora, sizeof(struHorasT));
 
     arch2.close();
-    cout << "Archivo 'Horas.dat' generado con exito." << endl;
+    cout << "Archivo 'Horas.dat' generado con exito." << endl; // <-- Ahora sí debería imprimir
 }
+
 
 
 // --- FUNCIÓN PRINCIPAL MAIN ---
