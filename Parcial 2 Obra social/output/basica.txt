@@ -1,0 +1,3 @@
+Consulta Medica
+Analisis Sangre
+Radiografia Simple

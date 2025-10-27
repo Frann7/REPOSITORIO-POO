@@ -1,0 +1,24 @@
+1. (45) Una Obra Social lo contrata para realizar un software que permita saber si un cliente que
+tiene un id y un nombre, cuenta con una prestación determinada. La obra social tiene 3 tipos de
+clientes:
+plan básico: cuenta con las prestaciones guardadas en un archivo de texto llamado “basica.txt”
+plan medio: cuenta con las prestaciones guardadas en un archivo de texto llamado “medio.txt”
+plan premium: cuenta con las prestaciones guardadas en un archivo de texto llamado “premium.txt”
+A la vez cuenta con un archivo binario que cuenta con los datos de los usuarios con el siguiente
+formato:
+int id
+char[200] nombre
+char tipo // b es básico, m es medio y p es premium.
+int cantidad //que es la cantidad de veces que se utilizó el servicio en el mes.
+Diseñe y programe:
+• Un modelo que permita leer los usuarios y sus prestaciones.
+• Programe una función que dado un usuario y una prestación indique si esta prestación es
+prestada.
+1) (40) Realice funciones usando stl :
+A. (10) Que obtenga los 5 usuarios que más utilizaron el servicio en el mes
+B. (10) Que obtenga todas las prestaciones de todos los planes
+C. (10) Que obtenga la cantidad de veces que se utilizó el servicio por tipo de plan.
+D. (10) Que obtenga las prestaciones que se repite en todos planes.
+2) (15) Conteste: ¿Qué ventajas tiene utilizar stl? ¿Para qué nos sirven los iterators?
+
+

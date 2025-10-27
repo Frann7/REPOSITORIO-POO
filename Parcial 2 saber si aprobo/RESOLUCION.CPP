@@ -326,7 +326,8 @@ void Curso::menoresNotas()
 
         // 3. Suma esas cantidades
         size_t sumaCantNotas = accumulate(regulares.begin(), regulares.end(), 0,
-        [](size_t notas, Alumno* a){ return notas + a->getCantNotas(); });
+        [](size_t notas, Alumno* a){
+             return notas + a->getCantNotas(); });
         
         // 4. Calcula el promedio de cantidad de notas
         // ** BUG FIX: Usamos static_cast para asegurar división con decimales **
