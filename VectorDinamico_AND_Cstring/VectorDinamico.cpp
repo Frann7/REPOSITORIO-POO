@@ -13,8 +13,8 @@ class vector {
         T get_in_pos(size_t pos){return this->data[pos];};
         void add(T datos);// agregar elemento;
         void remove(size_t pos);// remover un dato pasando la pos
-        void removeOcu2(T datos);// remover ocurrencia de un dato
-        void removeData(T datos);// remover un dato pasando el dato mismo
+        void removeOcu(T datos);// remover ocurrencia de un dato
+        void removeFirst(T datos);// remover un dato pasando el dato mismo
         bool existe(T datos);// saber si un elemento existe en el vector
         void reemplazar(T datoviejo, T datonuevo);// reemplaza un elemento por otro
         T& operator[](size_t pos);// similar a getinpos 
@@ -49,24 +49,33 @@ void vector<T>::resize(size_t newcapacity){
 
 template<class T>
 void vector<T>::remove(size_t pos){
-    for(size_t i=pos; i<this->size; i++)
+    for(size_t i=pos; i<this->size-1; i++)// Size-1 para no leer basura en el ultimo elemento
         this->data[i]=this->data[i+1];// mueve todos los elementos hacia la izquierda
 
     this->size--;
 }
 
 template<class T>
-void vector<T>::removeOcu2(T datos){
-    for(size_t i=0; i<this->size; i++)
-    while(this->data[i]==datos)//remueve todos los T datos del vector
-        remove(i);
+void vector<T>::removeOcu(T datos){
+    size_t i = 0;
+    while(i < this->size)
+    {
+        if(this->data[i] == datos)
+        {
+            remove(i);
+        }else
+        {
+            i++;
+        }
+    }
 }
 
 template<class T>
-void vector<T>::removeData(T datos){
+void vector<T>::removeFirst(T datos){
     for(size_t i=0; i<this->size; i++)
         if(this->data[i]==datos)//remueve solo el primer T dato que encuentre en el vector
-          remove(i); 
+          remove(i);
+          break;
 }
 
 template<class T>
